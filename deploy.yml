@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - test
+      - feature
       - uat
       - prod
 
@@ -20,7 +20,7 @@ env:
 jobs:
   build:
     if: |
-      github.ref == 'refs/heads/test' || github.ref == 'refs/heads/uat' || github.ref == 'refs/heads/prod'
+      github.ref == 'refs/heads/feature' || github.ref == 'refs/heads/uat' || github.ref == 'refs/heads/prod'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -63,7 +63,7 @@ jobs:
   deploy:
     needs: build
     if: |
-      github.ref == 'refs/heads/test' || github.ref == 'refs/heads/uat' || github.ref == 'refs/heads/prod'
+      github.ref == 'refs/heads/feature' || github.ref == 'refs/heads/uat' || github.ref == 'refs/heads/prod'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
